@@ -35,27 +35,37 @@
 <main class="doc">
   <p class="eyebrow">/ Legal</p>
   <h1>Privacy policy</h1>
-  <p class="date">Last updated 9 October 2026</p>
+  <p class="date">Last updated 22 October 2026</p>
 
   <p>Jarvis is a personal assistant designed, built and owned by Nazeem Mohamed. It runs on its owner's own Windows PC and is used only by
   its owner. This page explains what it does with Google account data.</p>
 
   <h2>What Jarvis accesses</h2>
   <ul>
-    <li><strong>Gmail:</strong> new messages, so it can sort them into labels, flag urgent ones,
-    and save reply drafts when asked. It does not send, delete or archive email.</li>
-    <li><strong>Google Calendar:</strong> events (read-only), so it can say what's on. It cannot change or delete them.</li>
+    <li><strong>Gmail:</strong> reads incoming messages so it can sort them into its own labels, flag urgent
+    or suspicious ones and summarise them. It also looks at recent conversations, including the owner's sent mail,
+    to notice replies that are still waiting or follow-ups that went unanswered. It saves reply drafts in the
+    owner's Drafts folder when asked, or on its own only if the owner has switched that on. It never sends,
+    deletes or archives email; every draft waits for the owner to review and send it themselves.</li>
+    <li><strong>Google Calendar:</strong> reads events so it can say what's on, warn about clashes and
+    meetings with no location, and prepare the morning briefing. It can create, change or delete events,
+    but only after the owner approves each one. The owner can choose to let it make calendar changes without
+    asking, in which case it reports what it did and each change can be undone.</li>
+    <li><strong>YouTube</strong> (optional, only if the owner connects it): searches for music and reads
+    the owner's playlists so it can play them. It adds a song to a playlist only after the owner approves.</li>
   </ul>
   <p>Access is only to the Google account its owner connects, and the owner can disconnect it at
   any time from their <a href="https://myaccount.google.com/permissions">Google account permissions</a>.</p>
 
   <h2>Where the data goes</h2>
   <ul>
-    <li>Sign-in tokens and email labels/notes are stored on the owner's own PC.</li>
-    <li>To sort email and write summaries, the text of messages is sent to Google's Gemini AI service
-    for processing, using the owner's own Gemini key.</li>
-    <li>Summaries and alerts are sent to the owner's own phone (Telegram and the owner's private
-    phone app).</li>
+    <li>Sign-in tokens, email labels and short notes about messages (such as sender, subject and
+    whether a reply is needed) are stored on the owner's own PC.</li>
+    <li>To sort email, write summaries, spot what needs attention and draft replies, the text of
+    messages and calendar details are sent to Google's Gemini AI service for processing, using the
+    owner's own Gemini key.</li>
+    <li>Summaries, alerts and suggestions are shown to the owner on their own PC (including the
+    desktop companion) and sent to the owner's own phone (Telegram and the owner's private phone app).</li>
   </ul>
   <p>Data is never sold, shared with anyone else, used for advertising, or used to train AI models
   by Jarvis.</p>
