@@ -291,6 +291,57 @@ h3 { font-size: 17px; margin: 0 0 8px; font-weight: 600; }
 @keyframes breathe { 0%, 100% { transform: scale(0.9); opacity: 0.8; } 50% { transform: scale(1.08); opacity: 1; } }
 .m-siri { display: grid; gap: 4px; color: #d7e2ea; }
 
+.m-btns { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
+.m-btns span { border: 1px solid #1f4250; border-radius: 4px; padding: 2px 7px; color: #a9b6c0; font-size: 10.5px; }
+.m-btns span.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.m-dial { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; border-bottom: 1px solid #16262e; color: #d7e2ea; }
+.m-dial b { font-weight: 400; font-size: 10px; padding: 1px 7px; border-radius: 3px; border: 1px solid; }
+.d-ask { color: #9aa3ab; border-color: #34404a; }
+.d-tell { color: #ffb020; border-color: #5a4420; }
+.d-auto { color: var(--accent); border-color: #1f4a5a; }
+
+/* ---------- desktop companion ---------- */
+.cmp-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; margin-bottom: 40px; }
+.cmp-intro .section-head { margin-bottom: 0; }
+.cmp-stage {
+  position: relative; margin: 0; height: 430px; overflow: hidden;
+  border: 1px solid #18303a; border-radius: 12px;
+  background: radial-gradient(ellipse at 50% 85%, rgba(63, 208, 255, 0.14), transparent 60%),
+    repeating-linear-gradient(0deg, transparent 0 39px, #0f1d24 39px 40px),
+    repeating-linear-gradient(90deg, transparent 0 39px, #0f1d24 39px 40px), #070d11;
+}
+.cmp-hero { position: absolute; left: 50%; bottom: 34px; height: 230px; width: auto; transform: translateX(-50%); animation: bob 3.2s ease-in-out infinite; filter: drop-shadow(0 6px 14px rgba(63, 208, 255, 0.25)); }
+@keyframes bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -4px); } }
+.cmp-taskbar { position: absolute; left: 0; right: 0; bottom: 0; height: 34px; background: rgba(17, 25, 32, 0.92); border-top: 1px solid var(--line); }
+.cmp-bubble {
+  position: absolute; left: 50%; top: 22px; transform: translateX(-50%); width: min(300px, 86%);
+  padding: 12px 14px; display: grid; gap: 8px; z-index: 1;
+  background: #0c1a22; border: 1px solid var(--accent); border-radius: 10px; box-shadow: 0 0 22px rgba(63, 208, 255, 0.22);
+  font-size: 14px; color: #d7e2ea;
+}
+.cmp-bubble::after { content: ""; position: absolute; left: 50%; bottom: -7px; width: 12px; height: 12px; background: #0c1a22; border-right: 1px solid var(--accent); border-bottom: 1px solid var(--accent); transform: translateX(-50%) rotate(45deg); }
+.cmp-bubble p { margin: 0; }
+.cmp-bubble .cmp-label { font-family: "Share Tech Mono", ui-monospace, Consolas, monospace; font-size: 11px; letter-spacing: 1px; color: var(--accent); }
+.cmp-bubble .m-btns span { font-family: "Share Tech Mono", ui-monospace, Consolas, monospace; font-size: 11px; }
+.cmp-poses { list-style: none; margin: 0 0 40px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.cmp-poses li { display: grid; justify-items: center; align-content: end; gap: 10px; padding: 20px 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.cmp-poses img { height: 150px; width: auto; object-fit: contain; }
+.cmp-poses img.wide { height: 112px; }
+.cmp-poses span { font-family: "Share Tech Mono", ui-monospace, Consolas, monospace; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: #a9b6c0; }
+.cmp-grid { margin-bottom: 28px; }
+.cmp-note { color: var(--muted); font-size: 15px; margin: 0; max-width: 760px; }
+
+@media (max-width: 960px) {
+  .cmp-intro { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 720px) {
+  .cmp-stage { height: 410px; }
+  .cmp-hero { height: 190px; }
+  .cmp-poses { grid-template-columns: repeat(2, 1fr); }
+  .cmp-poses img { height: 120px; }
+  .cmp-poses img.wide { height: 90px; }
+}
+
 /* ---------- stage showcase ---------- */
 .stages { --stage: #3fd0ff; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr); gap: 56px; align-items: start; }
 .stage-list { list-style: none; margin: 0; padding: 0; }
@@ -318,6 +369,6 @@ h3 { font-size: 17px; margin: 0 0 8px; font-weight: 600; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal.pre { opacity: 1; transform: none; filter: none; transition: none; }
-  .m-wave i, .m-sweep, .m-blip, .m-link, .m-orb { animation: none; }
+  .m-wave i, .m-sweep, .m-blip, .m-link, .m-orb, .cmp-hero { animation: none; }
   .frame { transition: none; }
 }
