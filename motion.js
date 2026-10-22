@@ -1,4 +1,4 @@
-// Jarvis.OS site motion: starfield, particle core, scroll reveal, filters, companion poses,
+// Jarvis.OS site motion: starfield, particle core, scroll reveal, filters, companion demo,
 // stage showcase and the mobile menu. The page is fully readable without this script.
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -274,30 +274,180 @@
     });
   });
 
-  // ---------- companion poses ----------
-  var bubbles = {
-    drop: ['Caught a document: invoice.pdf. What should I do with it?', ['Summarise', 'Save to memory', 'Send to phone']],
-    idle: ['Standing by. Click me to chat, or double-click me to open the full interface.', ['Chat', 'Open HUD']],
-    think: ['Thinking it over: checking your calendar and inbox now.', []],
-    sit: ['Comfy up here on your window. If you move it, I ride along.', []],
-    sleep: ['Zzz. I doze after ten quiet minutes and wake up when you are back.', []]
-  };
-  var hero = $('.cmp-hero'), bubble = $('.cmp-bubble'), msg = $('.cmp-msg'), btns = $('.cmp-btns');
-  $$('.pose').forEach(function (p) {
-    p.addEventListener('click', function () {
-      $$('.pose').forEach(function (x) { x.classList.toggle('active', x === p); x.setAttribute('aria-selected', x === p ? 'true' : 'false'); });
-      var b = bubbles[p.dataset.bubble];
-      hero.classList.add('swap'); bubble.classList.add('swap');
-      setTimeout(function () {
-        hero.src = 'img/companion/' + p.dataset.img + '.png';
-        hero.classList.toggle('wide', p.dataset.img === 'sleep');
-        msg.textContent = b[0];
-        btns.innerHTML = b[1].map(function (t, i) { return '<span' + (i ? '' : ' class="on"') + '>' + t + '</span>'; }).join('');
-        hero.classList.remove('swap'); bubble.classList.remove('swap');
-      }, reduce ? 0 : 220);
+  // ---------- companion demo: a looping scene on a pretend desktop ----------
+  var stage = $('.cmp-stage');
+  if (stage) (function () {
+    var jv = $('.cmp-jv', stage), img = $('.cmp-hero', stage), win = $('.cmp-window', stage),
+      file = $('.cmp-file', stage), cur = $('.cmp-cursor', stage), zzz = $('.cmp-zzz', stage),
+      bubble = $('.cmp-bubble', stage), msg = $('.cmp-msg', stage), btns = $('.cmp-btns', stage),
+      play = $('.cmp-play', stage), chips = $$('.pose');
+    ['idle', 'walk_1', 'walk_2', 'talk', 'think', 'listen', 'drag', 'sit', 'sleep'].forEach(function (n) { new Image().src = 'img/companion/' + n + '.png'; });
+
+    var SAY = {
+      hi: ['Hi! I live down here on your taskbar. Click me any time.', []],
+      drop: ['Caught a document: invoice.pdf. What should I do with it?', ['Summarise', 'Save to memory', 'Send to phone']],
+      dots: [null, []],
+      summary: ['It’s an invoice for R4 250, due Friday. Want a reminder on Thursday?', ['Remind me', 'Not now']],
+      perch: ['Comfy up here. Move the window and I’ll ride along.', []],
+      welcome: ['Oh! Welcome back. Want a quick rundown of what you missed?', ['Yes please']]
+    };
+    var HS = { sleep: 0.27, sit: 0.32, drag: 0.42 }; // sprite height as a share of the stage height
+    var TASK = 40, WIN = { x: 0.08, top: 0.55, w: 0.44 }, W = 0, H = 0;
+
+    function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+    function seg(t, a, b) { return clamp((t - a) / (b - a), 0, 1); }
+    function ease(k) { return k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; }
+    function lerp(a, b, k) { return a + (b - a) * k; }
+    function hOf(p) { return (HS[p] || 0.46) * H; }
+    function walk(t) { return Math.floor(t / 0.2) % 2 ? 'walk_2' : 'walk_1'; }
+    function perchX(dx) { return WIN.x + dx + WIN.w * 0.6; }
+    function seatBottom() { return H * (1 - WIN.top) - hOf('sit') * 0.2; } // legs hang over the edge
+    function headTop(s) { return H - s.y - hOf(s.pose); } // px from the top of the stage
+
+    var CH = [
+      { d: 6.2, key: 5.5, f: function (t, s) { // strolls along the taskbar
+        if (t < 3.2) { s.x = lerp(0.48, 0.78, ease(seg(t, 0, 3.2))); s.pose = walk(t); }
+        else if (t < 3.5) { s.x = 0.78; s.flip = true; }
+        else if (t < 4.8) { s.x = lerp(0.78, 0.5, ease(seg(t, 3.5, 4.8))); s.pose = walk(t); s.flip = true; }
+        else s.say = 'hi';
+      } },
+      { d: 6.6, key: 4.4, f: function (t, s) { // a file is dropped on him
+        var ht = headTop(s), sx = W * 0.88, sy = H * 0.1, ex = s.x * W, ey = ht - 44;
+        if (t < 1.9) {
+          var k = ease(seg(t, 0.3, 1.9));
+          s.file = { x: lerp(sx, ex, k), y: lerp(sy, ey, k), o: seg(t, 0.2, 0.5) };
+          s.cur = { x: s.file.x + 18, y: s.file.y + 14, o: s.file.o };
+        } else {
+          var d = seg(t, 1.9, 2.3);
+          if (d < 1) s.file = { x: ex, y: lerp(ey, ht + 30, d * d), o: 1 - d };
+          s.cur = { x: ex + 18, y: ey + 14, o: 1 };
+        }
+        if (t >= 2.2) { s.pose = 'talk'; s.hop = Math.sin(Math.PI * seg(t, 2.2, 2.6)) * 26; }
+        if (t >= 2.4) s.say = 'drop';
+        if (t >= 3.6 && s.cur) s.cur.to = { k: ease(seg(t, 3.6, 4.8)) }; // glide to the first button
+        if (t >= 4.8 && t < 5.3) s.press = true;
+        if (t >= 5.3 && s.cur) s.cur.o = 1 - seg(t, 5.3, 6.1);
+      } },
+      { d: 6, key: 4, f: function (t, s) { // thinks, then answers
+        if (t < 2.4) { s.pose = 'think'; s.say = 'dots'; } else { s.pose = 'talk'; s.say = 'summary'; }
+      } },
+      { d: 7.2, key: 3, f: function (t, s) { // hops onto a window and rides it
+        var k0 = ease(seg(t, 0, 0.5));
+        s.win = { o: k0, dx: 0, sc: lerp(0.94, 1, k0) };
+        if (t < 0.6) return;
+        if (t < 1.4) { s.x = lerp(0.5, 0.42, ease(seg(t, 0.6, 1.4))); s.pose = walk(t); s.flip = true; return; }
+        if (t < 2.1) {
+          var k = seg(t, 1.4, 2.1);
+          s.pose = 'drag'; s.x = lerp(0.42, perchX(0), k);
+          s.y = lerp(TASK, seatBottom(), k) + Math.sin(Math.PI * k) * 70; return;
+        }
+        var dx = 0.14 * ease(seg(t, 4, 5.4));
+        s.win.dx = dx; s.pose = 'sit'; s.x = perchX(dx); s.y = seatBottom();
+        if (t >= 2.4) s.say = 'perch';
+      } },
+      { d: 8, key: 3.5, f: function (t, s) { // the window closes, he falls, naps, wakes up
+        var c = seg(t, 0, 0.45);
+        s.win = { o: 1 - c, dx: 0.14, sc: lerp(1, 0.94, c) };
+        s.x = perchX(0.14);
+        if (t < 0.5) { s.pose = 'sit'; s.y = seatBottom(); return; }
+        if (t < 1.1) { var k = seg(t, 0.5, 1.1); s.pose = 'drag'; s.y = lerp(seatBottom(), TASK, k * k); return; }
+        if (t < 1.4) { s.y = TASK + Math.sin(Math.PI * seg(t, 1.1, 1.4)) * 10; return; }
+        if (t < 6.6) { s.pose = 'sleep'; s.zzz = true; }
+        else { s.pose = 'listen'; s.say = 'welcome'; s.hop = Math.sin(Math.PI * seg(t, 6.6, 6.9)) * 14; }
+        if (t >= 5.6) {
+          var m = ease(seg(t, 5.6, 6.5)), tx = s.x * W + 70, ty = H - TASK - 120;
+          s.cur = { x: lerp(W * 0.95, tx, m), y: lerp(H * 0.3, ty, m), o: seg(t, 5.6, 5.9) * (1 - seg(t, 7.2, 7.8)) };
+        }
+      } }
+    ];
+    var starts = [], total = 0;
+    CH.forEach(function (c) { starts.push(total); total += c.d; });
+
+    var shown = { pose: null, say: undefined };
+    function render(s) {
+      var h = hOf(s.pose), px = s.x * W, bottom = s.y + s.hop;
+      if (shown.pose !== s.pose) { img.src = 'img/companion/' + s.pose + '.png'; shown.pose = s.pose; }
+      img.style.height = h.toFixed(1) + 'px';
+      img.classList.toggle('flip', s.flip);
+      jv.style.transform = 'translate(calc(' + px.toFixed(1) + 'px - 50%),' + (-bottom).toFixed(1) + 'px)';
+
+      win.style.opacity = s.win.o;
+      win.style.transform = 'translateX(' + (s.win.dx * W).toFixed(1) + 'px) scale(' + s.win.sc + ')';
+
+      if (shown.say !== s.say) {
+        shown.say = s.say;
+        if (s.say) {
+          var c = SAY[s.say];
+          if (c[0]) msg.textContent = c[0]; else msg.innerHTML = '<span class="dots"><i></i><i></i><i></i></span>';
+          btns.innerHTML = c[1].map(function (b, i) { return '<span' + (i ? '' : ' class="on"') + '>' + b + '</span>'; }).join('');
+        }
+      }
+      bubble.classList.toggle('hidden', !s.say);
+      var bw = bubble.offsetWidth, left = clamp(px, bw / 2 + 10, W - bw / 2 - 10);
+      bubble.style.left = left.toFixed(1) + 'px';
+      bubble.style.bottom = (bottom + h + 16).toFixed(1) + 'px';
+      bubble.style.setProperty('--tail', clamp(px - left, -bw / 2 + 22, bw / 2 - 22).toFixed(1) + 'px');
+      var first = btns.firstElementChild;
+      if (first) first.classList.toggle('press', s.press);
+
+      if (s.cur && s.cur.to && first) { // glide from where it was to the first button
+        var r = first.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+        s.cur.x = lerp(s.cur.x, r.left - sr.left + r.width * 0.5, s.cur.to.k);
+        s.cur.y = lerp(s.cur.y, r.top - sr.top + r.height * 0.55, s.cur.to.k);
+      }
+      cur.style.opacity = s.cur ? s.cur.o : 0;
+      if (s.cur) cur.style.transform = 'translate(' + s.cur.x.toFixed(1) + 'px,' + s.cur.y.toFixed(1) + 'px) scale(' + (s.press ? 0.85 : 1) + ')';
+      file.style.opacity = s.file ? s.file.o : 0;
+      if (s.file) file.style.transform = 'translate(calc(' + s.file.x.toFixed(1) + 'px - 50%),' + s.file.y.toFixed(1) + 'px)';
+
+      zzz.style.opacity = s.zzz ? 1 : 0;
+      zzz.style.transform = 'translate(' + (px + h * 0.25).toFixed(1) + 'px,' + (-(bottom + h * 0.75)).toFixed(1) + 'px)';
+    }
+
+    var T = 0, last = null, paused = false, inView = false;
+    function draw() {
+      var i = CH.length - 1;
+      while (i > 0 && T < starts[i]) i--;
+      var t = T - starts[i];
+      var s = { x: 0.5, y: TASK, pose: 'idle', flip: false, say: null, cur: null, file: null, win: { o: 0, dx: 0, sc: 1 }, zzz: false, hop: 0, press: false };
+      CH[i].f(t, s);
+      render(s);
+      chips.forEach(function (c, j) {
+        var on = j === i;
+        if (c.classList.contains('active') !== on) { c.classList.toggle('active', on); c.setAttribute('aria-selected', on ? 'true' : 'false'); }
+        c.style.setProperty('--p', on ? (t / CH[i].d).toFixed(3) : 0);
+      });
+    }
+    function measure() { W = stage.clientWidth; H = stage.clientHeight; }
+    function frame(now) {
+      if (last === null) last = now;
+      var dt = Math.min(0.05, (now - last) / 1000); last = now;
+      if (!paused && inView && !document.hidden) { T = (T + dt) % total; draw(); }
+      requestAnimationFrame(frame);
+    }
+    function setPaused(p) {
+      paused = p;
+      play.setAttribute('aria-pressed', p ? 'true' : 'false');
+      play.setAttribute('aria-label', p ? 'Play the demo' : 'Pause the demo');
+    }
+
+    measure();
+    T = reduce ? CH[0].key : 0;
+    draw();
+    addEventListener('resize', function () { measure(); draw(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { inView = es[0].isIntersecting; }).observe(stage);
+    else inView = true;
+    if (reduce) setPaused(true);
+    requestAnimationFrame(frame);
+
+    play.addEventListener('click', function () { setPaused(!paused); });
+    chips.forEach(function (c, j) {
+      c.addEventListener('click', function () {
+        T = starts[j] + (paused ? CH[j].key : 0);
+        draw();
+      });
     });
-  });
-  ['idle', 'think', 'sit', 'sleep'].forEach(function (n) { var im = new Image(); im.src = 'img/companion/' + n + '.png'; });
+  })();
 
   // ---------- stage showcase: the step in the middle of the screen picks the picture ----------
   var steps = $$('.stage'), frames = $$('.frame'), wrap = $('.stages');

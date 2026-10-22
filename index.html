@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body class="home">
 
@@ -306,22 +306,30 @@
       <div class="section-head reveal">
         <p class="eyebrow">/ Desktop companion</p>
         <h2 class="display-sm">Meet Jarvis, <span class="accent">in person</span></h2>
-        <p class="section-lead">Jarvis lives on the desktop as a small animated companion. He walks along the taskbar, sits on the edge of the window you're working in, and is one click away from everything Jarvis can do. Double-click him and the full interface opens.</p>
-        <div class="poses" role="tablist" aria-label="Companion poses">
-          <button class="pose active" type="button" role="tab" aria-selected="true" data-img="talk" data-bubble="drop">Talking</button>
-          <button class="pose" type="button" role="tab" aria-selected="false" data-img="idle" data-bubble="idle">Standing by</button>
-          <button class="pose" type="button" role="tab" aria-selected="false" data-img="think" data-bubble="think">Thinking</button>
-          <button class="pose" type="button" role="tab" aria-selected="false" data-img="sit" data-bubble="sit">Perched</button>
-          <button class="pose" type="button" role="tab" aria-selected="false" data-img="sleep" data-bubble="sleep">Dozing</button>
+        <p class="section-lead">Jarvis lives on the desktop as a small animated companion. He walks along the taskbar, sits on the edge of the window you're working in, and is one click away from everything Jarvis can do. Double-click him and the full interface opens. Watch him in action:</p>
+        <div class="poses" role="tablist" aria-label="Scenes from the companion demo">
+          <button class="pose active" type="button" role="tab" aria-selected="true" data-ch="0"><span>Strolls</span></button>
+          <button class="pose" type="button" role="tab" aria-selected="false" data-ch="1"><span>Catches files</span></button>
+          <button class="pose" type="button" role="tab" aria-selected="false" data-ch="2"><span>Thinks</span></button>
+          <button class="pose" type="button" role="tab" aria-selected="false" data-ch="3"><span>Perches</span></button>
+          <button class="pose" type="button" role="tab" aria-selected="false" data-ch="4"><span>Dozes</span></button>
         </div>
       </div>
-      <figure class="cmp-stage reveal" aria-label="The Jarvis companion on a desktop">
+      <figure class="cmp-stage reveal" aria-label="Animated demo of the Jarvis companion on a desktop">
+        <div class="cmp-window" aria-hidden="true">
+          <div class="cw-bar"><i></i><i></i><i></i><span>Budget.xlsx</span></div>
+          <div class="cw-body"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
+        </div>
+        <div class="cmp-jv"><img class="cmp-hero" src="img/companion/talk.png" width="192" height="339" alt="The Jarvis companion, a small character in a dark coat with glowing cyan lines"></div>
+        <div class="cmp-zzz" aria-hidden="true"><span>z</span><span>z</span><span>Z</span></div>
+        <div class="cmp-file" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5"/><path d="M9 13h7M9 17h5"/></svg><span>invoice.pdf</span></div>
         <div class="cmp-bubble" aria-live="polite">
           <p class="cmp-label">J A R V I S</p>
           <p class="cmp-msg">Caught a document: invoice.pdf. What should I do with it?</p>
           <div class="m-btns cmp-btns"><span class="on">Summarise</span><span>Save to memory</span><span>Send to phone</span></div>
         </div>
-        <img class="cmp-hero" src="img/companion/talk.png" width="192" height="339" alt="The Jarvis companion, a small character in a dark coat with glowing cyan lines">
+        <svg class="cmp-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 8-6 1.6L10 19z"/></svg>
+        <button class="cmp-play" type="button" aria-label="Pause the demo" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M7 4l13 8-13 8z"/></svg></button>
         <div class="cmp-taskbar" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
       </figure>
     </div>
@@ -456,6 +464,6 @@
   </div>
 </footer>
 
-<script src="motion.js?v=6"></script>
+<script src="motion.js?v=7"></script>
 </body>
 </html>
