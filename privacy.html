@@ -4,28 +4,36 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jarvis Privacy Policy</title>
+<meta name="theme-color" content="#04060c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
+<canvas class="stars" aria-hidden="true"></canvas>
+<div class="progress" aria-hidden="true"></div>
 <header class="site-header">
-  <div class="wrap header-row">
-    <a class="wordmark" href="index.html" aria-label="Jarvis home">JARVIS</a>
-    <nav class="nav">
-      <a href="index.html#capabilities">Capabilities</a>
+  <div class="nav-shell">
+    <a class="brand" href="index.html" aria-label="Jarvis home">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 21 7v10l-9 5-9-5V7z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span>JARVIS<em>.OS</em></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html#capabilities">Features</a>
+      <a href="index.html#companion">Companion</a>
       <a href="index.html#interface">Interface</a>
       <a href="index.html#security">Security</a>
       <a href="index.html#creator">Creator</a>
-      <a href="index.html">Home</a>
     </nav>
+    <a class="pill pill-glow nav-cta" href="index.html">Home</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
 
 <main class="doc">
-  <p class="eyebrow">Legal</p>
+  <p class="eyebrow">/ Legal</p>
   <h1>Privacy policy</h1>
   <p class="date">Last updated 9 October 2026</p>
 
@@ -66,12 +74,12 @@
 </main>
 
 <footer class="site-footer">
-  <div class="wrap footer-row">
-    <span class="wordmark small">JARVIS</span>
-    <span>2026 Jarvis.OS</span>
-    <a href="index.html">Home</a>
+  <div class="wrap footer-base">
+    <span>&copy; 2026 Jarvis.OS</span>
+    <a class="accent" href="index.html">Back to home</a>
   </div>
 </footer>
+<script src="motion.js?v=6"></script>
 
 </body>
 </html>
