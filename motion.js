@@ -1,4 +1,4 @@
-// Jarvis.OS site motion: starfield, particle core, scroll reveal, filters, companion demo,
+// Apex.OS site motion: starfield, particle core, scroll reveal, filters, companion demo,
 // stage showcase and the mobile menu. The page is fully readable without this script.
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
