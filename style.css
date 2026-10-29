@@ -576,3 +576,48 @@ h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px
 @media (prefers-reduced-motion: reduce) {
   .how-line, .walker.wave .walker-body img { animation: none; }
 }
+
+/* ---------- build story (#story) ---------- */
+.story-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+.story-stat { padding: 20px 22px; }
+.story-stat b { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(32px, 3.4vw, 46px); line-height: 1; letter-spacing: -0.02em; color: var(--text); font-variant-numeric: tabular-nums; }
+.story-stat b small { margin-left: 3px; font-size: 0.5em; color: var(--accent); }
+.story-stat span { display: block; margin-top: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.story-names { display: flex; gap: 4px; margin: 0 0 56px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+.story-names div { min-width: 0; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--line-2); background: rgba(63, 208, 255, 0.06); color: var(--accent); }
+.story-names .sn-jarvis { border-color: var(--line); background: rgba(130, 190, 255, 0.03); color: var(--muted); }
+.story-names .sn-now { flex: 0 0 auto; box-shadow: 0 0 18px -6px var(--glow); }
+.story-names small { display: block; margin-top: 2px; font-size: 10.5px; letter-spacing: 0.04em; text-transform: none; color: var(--dim); white-space: nowrap; }
+.story { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 14px; }
+.story::before { content: ""; position: absolute; left: 119px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(var(--line-2), rgba(63, 208, 255, 0.04)); }
+.story-item, .story-era { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 30px; align-items: start; }
+.story-item time { position: relative; padding-top: 21px; font-family: var(--mono); font-size: 12.5px; line-height: 1.4; color: var(--accent); text-align: right; }
+.story-item time::after { content: ""; position: absolute; right: -19px; top: 26px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+.story-card { min-width: 0; padding: 20px 24px; max-width: 760px; }
+.story-card .mini-k { margin-bottom: 10px; }
+.story-card h3 { margin: 0 0 6px; font-size: 18px; text-wrap: balance; }
+.story-card p { margin: 0; max-width: 65ch; color: var(--muted); font-size: 14.5px; }
+.story-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 14px 0 0; padding: 0; }
+.story-tags li { padding: 3px 9px; border-radius: 6px; border: 1px solid var(--line); background: rgba(130, 190, 255, 0.03); font-family: var(--mono); font-size: 11px; color: var(--text); }
+.story-peak .story-card { border-color: var(--line-2); background: linear-gradient(140deg, rgba(63, 208, 255, 0.09), transparent 55%), var(--panel); }
+.story-peak time::after { width: 13px; height: 13px; right: -21px; top: 24px; }
+.story-era p { margin: 6px 0; justify-self: start; padding: 6px 14px; border-radius: 999px; border: 1px dashed var(--line-2); background: var(--bg-2); font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-2); }
+.story-sign { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: 40px 0 0 134px; padding-top: 22px; border-top: 1px solid var(--line); max-width: 760px; }
+.story-sign span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.story-sign a { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; color: var(--text); }
+.story-sign a:hover { color: var(--accent); }
+.story-sign em { flex-basis: 100%; font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+@media (max-width: 820px) {
+  .story-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .story::before { left: 75px; }
+  .story-item, .story-era { grid-template-columns: 64px minmax(0, 1fr); gap: 22px; }
+  .story-item time { font-size: 11.5px; }
+  .story-item time::after { right: -15px; }
+  .story-peak time::after { right: -17px; }
+  .story-card { padding: 16px 18px; }
+  .story-names { margin-bottom: 40px; }
+  .story-names div { padding: 8px 9px; }
+  .story-sign { margin-left: 0; }
+}
