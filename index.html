@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body class="home">
 
@@ -30,9 +30,11 @@
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#capabilities">Features</a>
       <a href="#companion">Companion</a>
-      <a href="#interface">Interface</a>
+      <a href="#day">A day</a>
+      <a href="#how">How it works</a>
       <a href="#security">Security</a>
-      <a href="#creator">Creator</a>
+      <a href="#commands">Commands</a>
+      <a href="#faq">FAQ</a>
       <a class="nav-privacy" href="privacy.html">Privacy</a>
     </nav>
     <a class="pill pill-glow nav-cta" href="#companion">Meet Apex</a>
@@ -84,10 +86,10 @@
 
   <div class="wrap">
     <dl class="stats">
-      <div class="stat reveal"><dt><span data-count="162">162</span></dt><dd>Built-in tools, ready on command</dd></div>
-      <div class="stat reveal"><dt><span data-count="16">16</span></dt><dd>Connected systems, built in stages</dd></div>
-      <div class="stat reveal"><dt>~1<small>s</small></dt><dd>Live voice replies from the phone</dd></div>
-      <div class="stat reveal"><dt>Local</dt><dd>Memory, keys and sign-ins stay on your PC</dd></div>
+      <div class="stat reveal" data-stat="tools"><dt><span data-count="162">162</span></dt><dd>Built-in tools, ready on command</dd></div>
+      <div class="stat reveal" data-stat="systems"><dt><span data-count="16">16</span></dt><dd>Connected systems, built in stages</dd></div>
+      <div class="stat reveal" data-stat="days"><dt><span data-count="69">69</span></dt><dd>Days since the first build</dd></div>
+      <div class="stat reveal" data-stat="versions"><dt><span data-count="107">107</span></dt><dd>Saved versions of Apex so far</dd></div>
     </dl>
   </div>
 </section>
@@ -363,7 +365,30 @@
   </div>
 </section>
 
-<section id="companion" class="section section-glow">
+<section id="day" class="section section-glow">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">/ A day with Apex</p>
+      <h2 class="display-sm">One day, <span class="accent">start to finish</span></h2>
+      <p class="section-lead">An example day: what Apex does in the background, and the moments he steps in.</p>
+    </div>
+    <ol class="day">
+      <li class="day-item reveal"><time>07:30</time><div class="day-card glow-card"><span class="mini-k">Self-test</span><h3>Checks himself before you wake</h3><p>AI, email, calendar, phone link and backups are tested. All fine, so he says nothing.</p></div></li>
+      <li class="day-item reveal"><time>08:00</time><div class="day-card glow-card"><span class="mini-k">Briefing</span><h3>Your morning voice note</h3><p>Weather, today's meetings, urgent reminders and the emails worth your attention, sent to your phone.</p></div></li>
+      <li class="day-item reveal"><time>09:00</time><div class="day-card glow-card"><span class="mini-k">Command</span><h3>"Let's get to work, Apex"</h3><p>Outlook, Excel and the browser open in your usual layout, and he mentions the call at 14:00.</p></div></li>
+      <li class="day-item reveal"><time>10:15</time><div class="day-card glow-card"><span class="mini-k">Inbox</span><h3>A scam email caught</h3><p>A fake "bank security" message is labelled Suspicious. Two real emails get reply drafts, waiting for you, never sent.</p></div></li>
+      <li class="day-item reveal"><time>11:40</time><div class="day-card glow-card"><span class="mini-k">Watch</span><h3>A price drop</h3><p>The item you're watching drops below R2 000, and a short alert reaches your phone.</p></div></li>
+      <li class="day-item reveal"><time>13:45</time><div class="day-card glow-card"><span class="mini-k">Instinct</span><h3>A meeting with no location</h3><p>The 14:00 call has no link or address. He spots it and offers to ask the organiser.</p></div></li>
+      <li class="day-item reveal"><time>15:10</time><div class="day-card glow-card"><span class="mini-k">Guardian</span><h3>A crash, fixed in 20 seconds</h3><p>Something goes wrong and Apex stops. The watchdog starts him again and he tells you what happened.</p></div></li>
+      <li class="day-item reveal"><time>16:30</time><div class="day-card glow-card"><span class="mini-k">Hands</span><h3>Windows moved by hand</h3><p>Gesture mode on: a fist drags the report to the second screen, a pinch clicks Save.</p></div></li>
+      <li class="day-item reveal"><time>19:00</time><div class="day-card glow-card"><span class="mini-k">Relay</span><h3>PC off, still answering</h3><p>The PC is shut down. A Telegram question is answered by Standby, and a reminder still goes out on time.</p></div></li>
+      <li class="day-item reveal"><time>21:00</time><div class="day-card glow-card"><span class="mini-k">Receipt</span><h3>The evening receipt</h3><p>Everything he did on his own today, in one list, each with an Undo button.</p></div></li>
+      <li class="day-item reveal"><time>02:00</time><div class="day-card glow-card"><span class="mini-k">Learns</span><h3>Learning while you sleep</h3><p>He researches a gap in what he knows and keeps only the facts a second AI confirms.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="companion" class="section">
   <div class="wrap">
     <div class="cmp-intro">
       <div class="section-head reveal">
@@ -411,7 +436,7 @@
   </div>
 </section>
 
-<section id="interface" class="section">
+<section id="interface" class="section section-glow">
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow">/ Interface</p>
@@ -458,6 +483,38 @@
   </div>
 </section>
 
+<section id="how" class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">/ How it works</p>
+      <h2 class="display-sm">What stays home, <span class="accent">what travels</span></h2>
+      <p class="section-lead">Apex lives on the owner's PC. Only a few things ever leave it, each for one reason.</p>
+    </div>
+    <div class="how reveal">
+      <div class="how-side">
+        <div class="how-node glow-card"><span class="mini-k">Phone</span><h3>Private phone link</h3><p>The phone app talks to the PC over Tailscale, an encrypted network only the owner's devices are on.</p><span class="how-line" aria-hidden="true"></span></div>
+        <div class="how-node glow-card"><span class="mini-k">Telegram</span><h3>Messages</h3><p>Texts and voice notes to and from the owner's own Telegram bot pass through Telegram.</p><span class="how-line" aria-hidden="true"></span></div>
+      </div>
+      <div class="how-pc glow-card">
+        <p class="eyebrow">The PC</p>
+        <h3>Stays on the PC</h3>
+        <ul class="tags">
+          <li>Memory, notes &amp; documents</li>
+          <li>Keys, passwords &amp; sign-ins</li>
+          <li>Speech recognition &amp; Apex's voice</li>
+          <li>Gesture camera, never recorded</li>
+          <li>The audit log &amp; undo history</li>
+          <li>Backups, to the owner's USB</li>
+        </ul>
+      </div>
+      <div class="how-side how-right">
+        <div class="how-node glow-card"><span class="mini-k">AI</span><h3>Google Gemini</h3><p>Each question goes to Gemini with the conversation and the facts it needs to answer. A screenshot is sent only when you ask him to look.</p><span class="how-line" aria-hidden="true"></span></div>
+        <div class="how-node glow-card"><span class="mini-k">Standby</span><h3>Cloud standby</h3><p>A small script in the owner's own Google account answers while the PC is off, then hands back.</p><span class="how-line" aria-hidden="true"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="security" class="section section-glow">
   <div class="wrap">
     <div class="section-head reveal">
@@ -475,6 +532,74 @@
       <div class="shield glow-card reveal"><span class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 20 20 4"/></svg></span><h3>Camera stays local</h3><p>Hand tracking runs on the PC itself. The webcam is only on in gesture mode, and no picture is saved or sent anywhere.</p></div>
       <div class="shield glow-card reveal"><span class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9"/><path d="m17 6 3 3"/><path d="m15 8 2 2"/></svg></span><h3>Locked copies</h3><p>A shared copy of Apex only unlocks with a key made for that one PC, and its code is compiled so it can't be read or copied.</p></div>
       <div class="shield glow-card reveal"><span class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Checks itself</h3><p>A morning self-test covers the AI, email, calendar, phone link and backups, and only speaks up when something is broken.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="commands" class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">/ Commands</p>
+      <h2 class="display-sm">Things you can <span class="accent">say to Apex</span></h2>
+      <p class="section-lead">A few examples. There are no fixed phrases: say it your own way, out loud, typed, or on Telegram.</p>
+    </div>
+    <div class="cmd-tools reveal">
+      <label class="cmd-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" placeholder="Search commands, e.g. email, music, screen" aria-label="Search commands" data-cmd-search></label>
+      <p class="cmd-count" aria-live="polite" data-cmd-count></p>
+    </div>
+    <ul class="cmds reveal" data-cmds>
+      <li><b>Voice</b><span>"Hey Apex, what's on today?"</span></li>
+      <li><b>Voice</b><span>"Switch to your fun personality"</span></li>
+      <li><b>Hands</b><span>"Gesture mode"</span></li>
+      <li><b>Hands</b><span>"Train my gestures"</span></li>
+      <li><b>Hands</b><span>"Stop gestures"</span></li>
+      <li><b>Screen</b><span>"What's on my screen?"</span></li>
+      <li><b>Screen</b><span>"What does this error mean?"</span></li>
+      <li><b>PC</b><span>"Open Calculator and work out 7 times 6"</span></li>
+      <li><b>PC</b><span>"Let's get to work" (opens your app set)</span></li>
+      <li><b>PC</b><span>"Open my Downloads folder"</span></li>
+      <li><b>Email</b><span>"Any emails that need a reply?"</span></li>
+      <li><b>Email</b><span>"Draft a reply to the supplier"</span></li>
+      <li><b>Calendar</b><span>"Move my 14:00 meeting to Friday"</span></li>
+      <li><b>Reminders</b><span>"Remind me at 15:00 to call the bank"</span></li>
+      <li><b>Memory</b><span>"Remember that my car service is in March"</span></li>
+      <li><b>Memory</b><span>"When does my lease end?"</span></li>
+      <li><b>Research</b><span>"Find three plumbers nearby and check their numbers"</span></li>
+      <li><b>Research</b><span>"Research the best laptops under R15 000"</span></li>
+      <li><b>Watch</b><span>"Tell me when this price drops below R2 000"</span></li>
+      <li><b>Maps</b><span>"Directions to the airport"</span></li>
+      <li><b>Music</b><span>"Play some jazz on YouTube Music"</span></li>
+      <li><b>Phone</b><span>"Send this file to my phone"</span></li>
+      <li><b>Writing</b><span>"Write a short thank-you message in my style"</span></li>
+      <li><b>Companion</b><span>"Do a trick" or "Let's play a game"</span></li>
+      <li><b>Companion</b><span>"Start a 25-minute focus session"</span></li>
+      <li><b>Showcase</b><span>"Give me the grand tour"</span></li>
+      <li><b>Growing</b><span>"Teach yourself to do that"</span></li>
+      <li><b>Safety</b><span>"Kill switch" (pauses everything in the background)</span></li>
+      <li><b>Safety</b><span>"What did you do on your own today?"</span></li>
+      <li><b>Privacy</b><span>"Show me everything you know about me"</span></li>
+    </ul>
+    <p class="cmd-empty" hidden data-cmd-empty>No example matches that. Apex would still understand you: just ask.</p>
+  </div>
+</section>
+
+<section id="faq" class="section section-glow">
+  <div class="wrap faq-wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">/ FAQ</p>
+      <h2 class="display-sm">Good <span class="accent">questions</span></h2>
+      <p class="section-lead">What people usually ask first.</p>
+    </div>
+    <div class="faq reveal">
+      <details class="glow-card"><summary>Does Apex cost money to run?</summary><p>No. He runs on the owner's own PC and uses free services: Gemini's free tier, Tailscale's personal plan, Telegram and Google Apps Script. A paid Gemini key can be added for higher limits, with the free key kept as a backup.</p></details>
+      <details class="glow-card"><summary>What happens when my PC is off?</summary><p>A small standby in the owner's own Google account takes over. It answers Telegram messages and sends timed reminders, and when the PC is back, Apex catches up on everything that happened.</p></details>
+      <details class="glow-card"><summary>Can Apex look at my screen without asking?</summary><p>No. He takes a screenshot only when you ask him to look, or during a PC task you approved. Window titles tell the companion when an error box appears, and he then offers to look rather than looking on his own.</p></details>
+      <details class="glow-card"><summary>Is the webcam always on?</summary><p>No. It's only on in gesture mode, which you start yourself. "Stop gestures", the Esc key, the kill switch or a time limit turn it off. Hand tracking runs on the PC, and no picture is saved or sent.</p></details>
+      <details class="glow-card"><summary>Where does my data go?</summary><p>It stays on the PC: memory, documents, keys and sign-ins. Questions go to Google Gemini to be answered, messages pass through Telegram, and backups go to a USB drive the owner keeps. Nothing is sold or used for advertising.</p></details>
+      <details class="glow-card"><summary>Will Apex do things without my permission?</summary><p>Only what you allow. Anything that sends, deletes, clicks or changes files asks first, the most sensitive actions need a password, and each area has its own ask / tell / auto dial. What he does alone can be undone.</p></details>
+      <details class="glow-card"><summary>What if Apex crashes?</summary><p>A watchdog checks on him every 20 seconds and starts him again, usually within half a minute, then tells you what happened. If he froze instead, it ends and restarts him.</p></details>
+      <details class="glow-card"><summary>Can I get a copy?</summary><p>Apex is built for one owner. Copies are shared by invitation only, and each copy unlocks with a key made for one PC. Ask the creator by email.</p></details>
+      <details class="glow-card"><summary>What does it need?</summary><p>A Windows PC with a microphone. A webcam for gesture mode, and a phone for the app and Telegram, are optional.</p></details>
     </div>
   </div>
 </section>
@@ -516,11 +641,11 @@
     </div>
     <div class="footer-col">
       <p class="footer-h">Navigate</p>
-      <a href="#capabilities">Features</a><a href="#companion">Companion</a><a href="#interface">Interface</a><a href="#security">Security</a>
+      <a href="#capabilities">Features</a><a href="#day">A day with Apex</a><a href="#companion">Companion</a><a href="#interface">Interface</a><a href="#how">How it works</a><a href="#security">Security</a>
     </div>
     <div class="footer-col">
       <p class="footer-h">More</p>
-      <a href="#creator">Creator</a><a href="privacy.html">Privacy policy</a><a href="mailto:nazeemmohamed488@gmail.com">Contact</a>
+      <a href="#commands">Commands</a><a href="#faq">FAQ</a><a href="#creator">Creator</a><a href="privacy.html">Privacy policy</a><a href="mailto:nazeemmohamed488@gmail.com">Contact</a>
     </div>
   </div>
   <div class="mega" aria-hidden="true"><div class="mega-track"><span>Private &middot; Voice-first &middot; Self-hosted &middot;&nbsp;</span><span>Private &middot; Voice-first &middot; Self-hosted &middot;&nbsp;</span></div></div>
@@ -531,5 +656,6 @@
 </footer>
 
 <script src="motion.js?v=7"></script>
+<script src="extras.js?v=1"></script>
 </body>
 </html>
